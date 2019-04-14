@@ -19,9 +19,9 @@ const CHANGE_PASSWORD="/:id/change_password";
 
 const VIDEOS="/videos";
 const UPLOAD="/upload";
-const VIDEO_DETAIL="videos/:id";
-const EDIT_VIDEO="/:id/edit";
-const DELETE_VIDEO="/:id/delete";
+const VIDEO_DETAIL="/:id";
+const EDIT_VIDEO="/:id/edit_video";
+const DELETE_VIDEO="/:id/delete_video";
 
 //Object
 
