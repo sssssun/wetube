@@ -17,6 +17,13 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(function(req, res, next){
+    res.locals.siteName="WeTube";
+    res.locals.routes=routes;
+    next();
+
+});
+
 app.use(routes.home,globalRouter);
 app.use(routes.users,userRouter);
 app.use(routes.videos,videoRouter);
