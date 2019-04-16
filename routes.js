@@ -11,8 +11,8 @@ const SEARCH="/search";
 
 const USERS="/users";
 const USER_DETAIL="/:id";
-const EDIT_PROFILE="/:id/edit_profile";
-const CHANGE_PASSWORD="/:id/change_password";
+const EDIT_PROFILE="/edit-profile";
+const CHANGE_PASSWORD="/change-password";
 
 
 //VIDEOS
@@ -20,8 +20,8 @@ const CHANGE_PASSWORD="/:id/change_password";
 const VIDEOS="/videos";
 const UPLOAD="/upload";
 const VIDEO_DETAIL="/:id";
-const EDIT_VIDEO="/:id/edit_video";
-const DELETE_VIDEO="/:id/delete_video";
+const EDIT_VIDEO="/:id/edit-video";
+const DELETE_VIDEO="/:id/delete-video";
 
 //Object
 
