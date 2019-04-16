@@ -1,11 +1,15 @@
-export const home=(req , res) => res.render("home", {pageTitle : "HOME"});
+//videoController 에서 fake database(db.js)에서 비디오 목록 받아옴 
+import {videos} from "../db";
+
+export const home=(req , res) => {
+    res.render("home", {pageTitle : "HOME", videos});
+};
 
 export const search=(req , res) => {
     const searchingBy = req.query.term;
     res.render("search", {pageTitle : "Search", searchingBy : searchingBy});
-}
+};
 
-export const videos=(req, res) => res.render("videos", {pageTitle : "Videos"});
 export const upload=(req, res) => res.render("upload", {pageTitle : "Upload"});
 export const videoDetail=(req, res) => res.render("videoDetail", {pageTitle : "Video Detail"});
 export const editVideo=(req, res) => res.render("editVideo", {pageTitle : "Edit Video"});

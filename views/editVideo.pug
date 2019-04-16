@@ -1,1 +1,11 @@
 extends layouts/main.pug
+
+block content
+    .form-container
+            form(action=routes.editVideo, method="post")
+                label(for="avatar") Avatar 
+                input(type="file", id="avatar", name="avatar")
+                input(type="text", name="name", placeholder="Name")
+                input(type="text", name="email", placeholder="Email")
+                input(type="submit", vaule="Update Profile")
+            a.form-container__link(href="/videos/:id/delete") Delete Video
