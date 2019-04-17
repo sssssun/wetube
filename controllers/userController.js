@@ -5,7 +5,7 @@ export const getJoin=(req , res) => {
 }
 
 export const postJoin=(req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     const joinInfo= {
         name: req.body.name,
         email: req.body.email,
@@ -24,7 +24,14 @@ export const postJoin=(req, res) => {
     
 }
 
-export const login=(req , res) => res.render("login");
+export const getLogin=(req , res) => {
+    res.render("Login", {pageTitle: "Log in"})
+}
+
+export const postLogin=(req,res) => {
+    res.redirect(routes.home);
+}
+
 export const logout=(req , res) => res.render("logout");
 export const users=(req,res) => res.render("users");
 export const userDetail=(req, res) => res.render("userDetail");

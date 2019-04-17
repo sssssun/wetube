@@ -9,7 +9,16 @@ header.header
 
     .header__column
         ul
-            li
-                a(href=routes.join) Join
-            li
-                a(href=routes.login) Log In
+            //app.js에 fake user 있음(res.locals로)
+            if !user.isAuthenticated
+                li
+                    a(href=routes.join) Join
+                li
+                    a(href=routes.login) Log In
+            else
+                li
+                    a(href=`users${routes.upload}`) Upload
+                li
+                    a(href=routes.userDetail(user.id)) User Detail
+                li
+                    a(href=routes.logout) Log Out
