@@ -1,5 +1,4 @@
 //videoController 에서 fake database(db.js)에서 비디오 목록 받아옴 
-import {videos} from "../db";
 import routes from "../routes";
 
 export const home=(req , res) => {
