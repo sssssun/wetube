@@ -34,7 +34,7 @@ const routes={
     users:USERS,
     userDetail:(id) => {
         if(id){
-            return `users/${id}`;
+            return `/users/${id}`;
         }
         else{
             return USER_DETAIL;
@@ -46,6 +46,8 @@ const routes={
     upload:UPLOAD,
     videoDetail:(id) => {
         if(id){
+            //return 에서 videos 앞에 /를 없애면 videos/videos/303030이 됨,, ㄷ
+            //videos 앞에 /가 있어야 됨
             return `/videos/${id}`;
         }
         else{
