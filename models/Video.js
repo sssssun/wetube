@@ -26,5 +26,6 @@ const VideoSchema = new mongoose.Schema({
     ]
 });
 
+//Video는 모델의 이름
 const model = mongoose.model("Video",VideoSchema);
 export default model;

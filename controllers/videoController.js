@@ -1,8 +1,16 @@
 //videoController 에서 fake database(db.js)에서 비디오 목록 받아옴 
+//이제 제대로 된 db model에서 비디오 목록 받아오도록 함
 import routes from "../routes";
+import Videos from "../models/Video";
 
-export const home=(req , res) => {
-    res.render("home", {pageTitle : "HOME", videos});
+export const home= async (req , res) => {
+    try{
+        const videos=await Videos.find({});
+        res.render("home", {pageTitle : "HOME", videos});
+    }catch(error){
+        console.log(error);
+        res.render("home", {pageTitle : "HOME", videos});
+    }
 };
 
 export const search=(req , res) => {
@@ -13,14 +21,20 @@ export const search=(req , res) => {
 export const getUpload=(req, res) => {
     res.render("upload", {pageTitle : "Upload"});
 }
-export const postUpload=(req,res) => {
-    const videoInfo={
-        name:req.body.name,
-        title:req.body.title,
-        description:req.body.description
+export const postUpload=async (req,res) => {
+    const uploadInfo={
+        file : req.file.path,
+        title : req.body.title,
+        description: req.body.description
     }
-    //To do : Upload and Save video
-    res.redirect(routes.videoDetail(303030));
+    //console.log(uploadInfo.body, uploadInfo.file);
+    const newVideo=await Videos.create({
+        fileUrl: uploadInfo.file,
+        title : uploadInfo.title,
+        description : uploadInfo.description
+    })
+    console.log(newVideo);
+    res.redirect(routes.videoDetail(newVideo.id));
 }
 export const videoDetail=(req, res) => res.render("videoDetail", {pageTitle : "Video Detail"});
 export const editVideo=(req, res) => res.render("editVideo", {pageTitle : "Edit Video"});
