@@ -16,12 +16,9 @@ export const postJoin=(req, res) => {
     if(joinInfo.password!==joinInfo.password2){
         res.status(400);
         res.render("Join", {pageTitle:"Join", joinInfo});
-    }
-    else{
+    }else{
         res.redirect(routes.home);
     }
-    
-    
 }
 
 export const getLogin=(req , res) => {

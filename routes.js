@@ -35,8 +35,7 @@ const routes={
     userDetail:(id) => {
         if(id){
             return `/users/${id}`;
-        }
-        else{
+        }else{
             return USER_DETAIL;
         }
     },
@@ -49,16 +48,14 @@ const routes={
             //return 에서 videos 앞에 /를 없애면 videos/videos/303030이 됨,, ㄷ
             //videos 앞에 /가 있어야 됨
             return `/videos/${id}`;
-        }
-        else{
+        }else{
             return VIDEO_DETAIL;
         }
     },
     editVideo:(id) => {
         if(id){
             return `/videos/${id}/edit-video`;
-        }
-        else{
+        }else{
            return EDIT_VIDEO;
         }
         
@@ -66,8 +63,7 @@ const routes={
     deleteVideo:(id) => {
         if(id){
             return `/videos/${id}/delete-video`;
-        }
-        else{
+        }else{
             return DELETE_VIDEO;
         }
         
