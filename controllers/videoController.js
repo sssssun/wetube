@@ -41,7 +41,7 @@ export const videoDetail= async(req, res) => {
     const id = req.params.id;
     try{
         const video = await Videos.findById(id);
-        res.render("videoDetail", {pageTitle : "Video Detail", video});
+        res.render("videoDetail", {pageTitle : video.title, video});
     }
     catch(error){
         console.log(error);
@@ -68,7 +68,7 @@ export const postEditVideo=async(req,res) => {
     const id=req.params.id;
 
     try{
-        
+        //변수로 따로 저장하지 않는 이유는 그냥 업데이트만 하면 되기 때문, 거기서 정보를 가져오거나 하지 않음
         await Videos.findByIdAndUpdate(
             id, 
             {$set:{
@@ -84,7 +84,18 @@ export const postEditVideo=async(req,res) => {
         res.redirect(routes.home);
     }
     
-        
+}
+
+export const deleteVideo= async(req, res) => {
+    const id=req.params.id;
+
+    try{
+        await Videos.findByIdAndRemove(id);
+        res.redirect(routes.home);
+    }
+    catch(error){
+        console.log(error);
+        res.redirect(routes.home);
+    }
     
 }
-export const deleteVideo=(req, res) => res.render("deleteVideo", {pageTitle : "Delete Video"});

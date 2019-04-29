@@ -2,6 +2,7 @@ extends layouts/main.pug
 
 block content
     .form-container
+            //videoController, videoRouter, routes 바꿔준 후에 클릭시 실행되는 것도 함수형태로 바꿔줘야함
             form(action=routes.editVideo(video.id), method="post")
                 //value로 이전 video title, description 받아옴
 
@@ -9,4 +10,4 @@ block content
                 textarea(name="description", placeholder="Description")=video.description
                 input(type="submit", value="Edit Video")
 
-            a.form-container__link(href="/videos/:id/delete") Delete Video
+            a.form-container__link(href=routes.deleteVideo(video.id)) Delete Video
