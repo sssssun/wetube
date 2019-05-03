@@ -1,25 +1,26 @@
 
 header.header
-    .header__column
-        a(href=routes.home)
-            <i class="fab fa-youtube"></i>
+    .header__wrapper
+        .header__column
+            a(href=routes.home)
+                <i class="fab fa-youtube"></i>
 
-    .header__column
-        form(action=routes.search, method="get")
-            input(type="text", placeholder="search by items", name="term")
+        .header__column
+            form(action=routes.search, method="get")
+                input(type="text", placeholder="search by items", name="term")
 
-    .header__column
-        ul
-            //app.js에 fake user 있음(res.locals로)
-            if !user.isAuthenticated
-                li
-                    a(href=routes.join) Join
-                li
-                    a(href=routes.login) Log In
-            else
-                li
-                    a(href=`/videos${routes.upload}`) Upload
-                li
-                    a(href=routes.userDetail(user.id)) User Detail
-                li
-                    a(href=routes.logout) Log Out
+        .header__column
+            ul
+                //app.js에 fake user 있음(res.locals로)
+                if !user.isAuthenticated
+                    li
+                        a(href=routes.join) Join
+                    li
+                        a(href=routes.login) Log In
+                else
+                    li
+                        a(href=`/videos${routes.upload}`) Upload
+                    li
+                        a(href=routes.userDetail(user.id)) User Detail
+                    li
+                        a(href=routes.logout) Log Out
