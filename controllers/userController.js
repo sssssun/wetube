@@ -1,10 +1,11 @@
 import routes from "../routes";
+import User from "../models/User";
 
 export const getJoin=(req , res) => {
     res.render("Join", {pageTitle:"Join"});
 }
 
-export const postJoin=(req, res) => {
+export const postJoin= async(req, res) => {
     //console.log(req.body);
     const joinInfo= {
         name: req.body.name,
@@ -17,6 +18,15 @@ export const postJoin=(req, res) => {
         res.status(400);
         res.render("Join", {pageTitle:"Join", joinInfo});
     }else{
+        //password 같으면
+        try{
+            const user = await User.create({name: joinInfo.name, email:joinInfo.email});
+
+            await User.register(user, joinInfo.password);
+
+        }catch(error){
+            console.log(error);
+        }
         res.redirect(routes.home);
     }
 }
