@@ -3,7 +3,7 @@
 import express from "express";
 import routes from "../routes";
 import { home, search } from "../controllers/videoController";
-import { getLogin, postLogin, logout, getJoin, postJoin} from "../controllers/userController";
+import { getLogin, postLogin, logout, getJoin, postJoin, postGithub, githubLogin, githubLoginCallback} from "../controllers/userController";
 import { onlyPublic } from "../middlewares";
 
 const globalRouter = express.Router();
@@ -17,6 +17,9 @@ globalRouter.get(routes.login,onlyPublic,getLogin);
 globalRouter.post(routes.login,onlyPublic,postLogin);
 
 globalRouter.get(routes.logout,logout);
+
+globalRouter.get(routes.github,githubLogin);
+globalRouter.get(routes.github_callback,githubLoginCallback,postGithub);
 
 
 export default globalRouter;
