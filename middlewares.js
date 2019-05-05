@@ -11,4 +11,22 @@ export const localsMiddleware = (req, res, next) => {
     next();
 }
 
+export const onlyPublic = (req, res, next) => {
+    if(req.user){
+        //로그인되어 있는 상태라면 join,login 등의 라우터에 접근 불가해야
+        res.redirect(routes.home);
+    }else{
+        next();
+    }
+}
+
+export const onlyPrivate = (req, res, next) => {
+    if(req.user){
+        next();
+    }else{
+        res.redirect(routes.home);
+    }
+
+}
+
 export const uploadVideo = multerVideo.single("videoFile");
