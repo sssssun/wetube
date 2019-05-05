@@ -12,6 +12,7 @@ header.header
         .header__column
             ul
                 //app.js에 fake user 있음(res.locals로)
+                //user 정보 저장 후 header change
                 if !user
                     li
                         a(href=routes.join) Join
