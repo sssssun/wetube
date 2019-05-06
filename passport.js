@@ -1,5 +1,6 @@
 import passport from "passport";
 import GithubStrategy from "passport-github";
+import FacebookStrategy from "passport-facebook";
 import User from "./models/User";
 
 
@@ -16,12 +17,12 @@ passport.use(new GithubStrategy({
 }, 
     //github에서 돌아왔을 때 실행되는 함수
     async (accessToken, refreshToken, profile, cb) => {
-        const {_json: {id, avatar_url, name, email}}=profile;
+        const {_json: {id, avatar_url: avatarUrl, name, email}}=profile;
         try{
             const user = await User.findOne({email});
             const newUser = await User.create({
                 githubId:id,
-                avatarUrl:avatar_url,
+                avatarUrl,
                 name,
                 email
             });
@@ -36,4 +37,14 @@ passport.use(new GithubStrategy({
         }catch(error){
             console.log(error);
         }
+    }));
+
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.FB_ID,
+    clientSecret: process.env.FB_SECRET,
+    callbackURL: "http://localhost:4000/auth/facebook/callback"
+    },
+    (accessToken, refreshToken, profile, cb) => {
+        console.log(accessToken, refreshToken, profile, cb);
     }));

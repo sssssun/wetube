@@ -3,7 +3,9 @@
 import express from "express";
 import routes from "../routes";
 import { home, search } from "../controllers/videoController";
-import { getLogin, postLogin, logout, getJoin, postJoin, postGithub, githubLogin, githubLoginCallback} from "../controllers/userController";
+import { getLogin, postLogin, logout, getJoin, postJoin, 
+    githubLogin, githubLoginCallback, postGithub, 
+    facebookLogin, facebookLoginCallback, postFacebook} from "../controllers/userController";
 import { onlyPublic } from "../middlewares";
 
 const globalRouter = express.Router();
@@ -20,6 +22,9 @@ globalRouter.get(routes.logout,logout);
 
 globalRouter.get(routes.github,githubLogin);
 globalRouter.get(routes.github_callback,githubLoginCallback,postGithub);
+
+globalRouter.get(routes.facebook, facebookLogin);
+globalRouter.get(routes.facebook_callback, facebookLoginCallback, postFacebook);
 
 
 export default globalRouter;
