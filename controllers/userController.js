@@ -54,13 +54,14 @@ export const postGithub=(req, res) => {
     res.redirect(routes.home);
 }
 
-export const facebookLogin=passport.authenticate("facebook");
+export const instagramLogin = passport.authenticate("instagram");
 
-export const facebookLoginCallback=passport.authenticate("facebook",{ failureRedirect: '/login' });
+export const instagramLoginCallback=passport.authenticate("instagram",{ failureRedirect: '/login' });
 
-export const postFacebook=(req,res) => {
+export const postInstagram=(req,res) => {
     res.redirect(routes.home);
 }
+
 
 export const logout=(req , res) => {
     //To do : Process Logout

@@ -1,6 +1,6 @@
 import passport from "passport";
 import GithubStrategy from "passport-github";
-import FacebookStrategy from "passport-facebook";
+import InstagramStrategy from "passport-instagram";
 import User from "./models/User";
 
 
@@ -40,11 +40,17 @@ passport.use(new GithubStrategy({
     }));
 
 
-passport.use(new FacebookStrategy({
-    clientID: process.env.FB_ID,
-    clientSecret: process.env.FB_SECRET,
-    callbackURL: "http://localhost:4000/auth/facebook/callback"
+passport.use(new InstagramStrategy(
+    {
+        clientID: process.env.INSTA_ID,
+        clientSecret: process.env.INSTA_SECRET,
+        callbackURL: "http://localhost:4000/auth/instagram/callback"
     },
-    (accessToken, refreshToken, profile, cb) => {
-        console.log(accessToken, refreshToken, profile, cb);
-    }));
+    async (accessToken, refreshToken, profile, cb) => {
+        
+            
+            console.log(accessToken, refreshToken, profile, cb);
+          }
+    
+
+));
