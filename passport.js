@@ -48,9 +48,30 @@ passport.use(new InstagramStrategy(
     },
     async (accessToken, refreshToken, profile, cb) => {
         
-            
-            console.log(accessToken, refreshToken, profile, cb);
-          }
+        console.log(accessToken, refreshToken, profile, cb);
+        const { _json: {id, full_name: name, profile_picture: avatarUrl}}= profile;
+
+        try{
+            const user = await User.findOne({id});
+            const newUser = await User.create({
+                instagramId: id,
+                name,
+                avatarUrl
+            })
+
+            if(user){
+                user.instagramId=id;
+                user.save();
+                return cb(null,user);
+            }else{
+                return cb(null,newUser);
+            }
+
+        }catch(error){
+            console.log(error);
+        }
+        
+    }
     
 
 ));
