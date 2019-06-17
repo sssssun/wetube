@@ -1,6 +1,9 @@
 html, head, body {
   margin: 0; }
 
+a {
+  text-decoration: none; }
+
 .header {
   background-color: #486ca5;
   margin-bottom: 40px; }
@@ -92,7 +95,7 @@ html, head, body {
      -moz-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
-  .form-container .form {
+  .form-container form {
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -110,7 +113,7 @@ html, head, body {
        -moz-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
-    .form-container .form input:not(:last-child) {
+    .form-container form input:not(:last-child) {
       width: 250px;
       margin-bottom: 20px;
       padding: 15px 15px;
@@ -121,7 +124,7 @@ html, head, body {
          -moz-border-radius: 3px;
               border-radius: 3px;
       font-size: 14px; }
-    .form-container .form input:last-child {
+    .form-container form input:last-child {
       width: 285px;
       padding: 15px 15px;
       margin-bottom: 30px;
@@ -156,6 +159,10 @@ html, head, body {
 .social-login .social-login__github {
   background-color: #333;
   color: white; }
+
+.social-login .social-login__google {
+  background-color: white;
+  color: gray; }
 
 .social-login .social-login__facebook {
   background-color: #3b5998;

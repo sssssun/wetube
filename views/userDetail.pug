@@ -3,5 +3,11 @@ extends layouts/main.pug
 block content
     .user_profile
         .user_profile__header
-            image.avatar
+            image.avatar(src=user.avatarUrl)
             h4.userName=user.name
+        if user.id === loggedUser.id
+            .user_profile__btns
+                button.user_profile__editProfile
+                    a(href=`/users${routes.editProfile}`) Edit Profile
+                button.user_profile__changePassword
+                    a(href=`/users${routes.changePassword}`) Change Password

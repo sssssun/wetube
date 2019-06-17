@@ -54,11 +54,11 @@ export const postGithub=(req, res) => {
     res.redirect(routes.home);
 }
 
-export const instagramLogin = passport.authenticate("instagram");
+export const googleLogin = passport.authenticate("google", {scope: ["email","profile"]});
 
-export const instagramLoginCallback=passport.authenticate("instagram",{ failureRedirect: '/login' });
+export const googleLoginCallback = passport.authenticate("google", {failureRedirect : '/login'});
 
-export const postInstagram=(req,res) => {
+export const postGoogle=(req, res) => {
     res.redirect(routes.home);
 }
 
@@ -69,8 +69,75 @@ export const logout=(req , res) => {
     res.redirect(routes.home);
 }
 export const users=(req,res) => res.render("users");
-export const userDetail=(req, res) => {
-    res.render("userDetail");
+
+export const getMe=(req,res) => {
+    res.render("userDetail", {pageTitle: "User Detail", user: req.user});
 }
-export const editProfile =(req, res) => res.render("editProfile");
-export const changePassword=(req, res) => res.render("changePassword");
+
+export const userDetail=async (req,res) => {
+    const userId = req.params.id;
+
+    try{
+        const user = await User.findById(userId);
+        
+        res.render("userDetail", {pageTitle: "User Detail", user});
+    }catch(error){
+        res.redirect(routes.home);
+
+    }
+}
+
+export const getEditProfile =(req, res) => {
+    res.render("editProfile", {pageTitle:  "Edit Profile" });
+}
+
+export const postEditProfile = async (req, res) => {
+
+    const {
+        body: {name, email},
+        file
+    } = req
+
+    try{
+
+        await User.findByIdAndUpdate(req.user.id, {
+            name,
+            email,
+            avatarUrl: file? file.path : req.user.avatarUrl
+        });
+        res.redirect(routes.me);
+    }catch(error){
+        console.log(error);
+        res.redirect(routes.editProfile);
+
+    }
+
+}
+export const getChangePassword=(req, res) => {
+    res.render("changePassword", {pageTitle: "changePassword"});
+}
+
+export const postChangePassword=async (req, res) => {
+    const {
+        body: {oldPassword, newPassword, newPassword2}
+    }=req
+
+    
+        try{
+
+            if(newPassword !==newPassword2){
+                res.status(400);
+                res.redirect(routes.changePassword);
+                return;
+            }
+            await req.user.changePassword(oldPassword, newPassword);
+            res.redirect(routes.me);
+            
+
+        }catch(error){
+            res.status(400);
+            res.redirect(routes.changePassword);
+        }
+    
+    
+}

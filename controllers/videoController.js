@@ -33,14 +33,18 @@ export const postUpload=async (req,res) => {
     const uploadInfo={
         file : req.file.path,
         title : req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        creator: req.user.id
     }
     //console.log(uploadInfo.body, uploadInfo.file);
     const newVideo=await Videos.create({
         fileUrl: uploadInfo.file,
         title : uploadInfo.title,
-        description : uploadInfo.description
+        description : uploadInfo.description,
+        creator : uploadInfo.creator
     })
+    req.user.videos.push(newVideo.id);
+    req.user.save();
     console.log(newVideo);
     res.redirect(routes.videoDetail(newVideo.id));
 }
@@ -48,7 +52,7 @@ export const videoDetail = async(req, res) => {
 
     const id = req.params.id;
     try{
-        const video = await Videos.findById(id);
+        const video = await Videos.findById(id).populate("creator");
         res.render("videoDetail", {pageTitle : video.title, video});
     }catch(error){
         console.log(error);

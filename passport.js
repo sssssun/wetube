@@ -1,6 +1,6 @@
 import passport from "passport";
 import GithubStrategy from "passport-github";
-import InstagramStrategy from "passport-instagram";
+import GoogleStrategy from "passport-google-oauth2";
 import User from "./models/User";
 
 
@@ -39,39 +39,36 @@ passport.use(new GithubStrategy({
         }
     }));
 
-
-passport.use(new InstagramStrategy(
+passport.use(new GoogleStrategy(
     {
-        clientID: process.env.INSTA_ID,
-        clientSecret: process.env.INSTA_SECRET,
-        callbackURL: "http://localhost:4000/auth/instagram/callback"
+        clientID: process.env.GOOGLE_ID,
+        clientSecret: process.env.GOOGLE_SECRET,
+        callbackURL: "http://localhost:4000/auth/google/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
-        
-        console.log(accessToken, refreshToken, profile, cb);
-        const { _json: {id, full_name: name, profile_picture: avatarUrl}}= profile;
+        //console.log(accessToken, refreshToken, profile, cb);
+        const {_json : {sub, name, email, picture}}=profile;
 
         try{
-            const user = await User.findOne({id});
+            const user=await User.findOne({email});
             const newUser = await User.create({
-                instagramId: id,
+                googleId:sub,
+                avatarUrl: picture,
                 name,
-                avatarUrl
-            })
+                email
+            });
 
             if(user){
-                user.instagramId=id;
+                user.googleId=sub;
                 user.save();
                 return cb(null,user);
             }else{
-                return cb(null,newUser);
+                return cb(null, newUser);
             }
-
         }catch(error){
             console.log(error);
         }
-        
-    }
-    
-
+      }
 ));
+
+

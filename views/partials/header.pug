@@ -13,7 +13,7 @@ header.header
             ul
                 //app.js에 fake user 있음(res.locals로)
                 //user 정보 저장 후 header change
-                if !user
+                if !loggedUser
                     li
                         a(href=routes.join) Join
                     li
@@ -22,6 +22,6 @@ header.header
                     li
                         a(href=`/videos${routes.upload}`) Upload
                     li
-                        a(href=routes.userDetail(user.id)) User Detail
+                        a(href=routes.me) User Detail
                     li
                         a(href=routes.logout) Log Out

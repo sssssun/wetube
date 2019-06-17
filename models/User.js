@@ -7,7 +7,19 @@ const UserSchema = mongoose.Schema({
     email: String,
     avatarUrl: String,
     githubId : Number,
-    instagramId : Number
+    googleId : Number,
+    comments : [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Comment"
+        }
+    ],
+    videos : [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Video"
+        }
+    ]
     
 
 });

@@ -13,6 +13,7 @@ const USERS="/users";
 const USER_DETAIL="/:id";
 const EDIT_PROFILE="/edit-profile";
 const CHANGE_PASSWORD="/change-password";
+const ME="/me";
 
 
 //VIDEOS
@@ -26,6 +27,10 @@ const DELETE_VIDEO="/:id/delete-video";
 //GITHUB
 const GITHUB="/auth/github";
 const GITHUB_CALLBACK="/auth/github/callback";
+
+//GOOGLE
+const GOOGLE="/auth/google";
+const GOOGLE_CALLBACK="/auth/google/callback";
 
 //INSTAGRAM
 const INSTAGRAM="/auth/instagram";
@@ -78,8 +83,11 @@ const routes={
     },
     github: GITHUB,
     github_callback: GITHUB_CALLBACK,
+    google: GOOGLE,
+    google_callback: GOOGLE_CALLBACK,
     instagram: INSTAGRAM,
-    instagram_callback: INSTAGRAM_CALLBACK
+    instagram_callback: INSTAGRAM_CALLBACK,
+    me: ME
 };
 
 export default routes;
