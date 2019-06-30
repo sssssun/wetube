@@ -1,0 +1,10 @@
+.videoBlock{
+    position: relative;
+    width: 70%;
+    margin: auto;
+
+    .videoBlock__thumbnail{
+        width: 100%;
+        max-width: 100%;
+    }
+}

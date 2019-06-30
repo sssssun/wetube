@@ -121,3 +121,18 @@ export const deleteVideo= async(req, res) => {
     }
     
 }
+
+export const postregisterView=async(req, res) => {
+    const id=req.params.id;
+    
+    try{
+        const video=await Videos.findById(id);
+        video.views+=1;
+        video.save();
+        res.status(200);
+    }catch(error){
+        res.status(400);
+    }finally{
+        res.end();
+    }
+}

@@ -32,9 +32,10 @@ const GITHUB_CALLBACK="/auth/github/callback";
 const GOOGLE="/auth/google";
 const GOOGLE_CALLBACK="/auth/google/callback";
 
-//INSTAGRAM
-const INSTAGRAM="/auth/instagram";
-const INSTAGRAM_CALLBACK="/auth/instagram/callback";
+//API
+//유저가 클릭해서 갈 수 있는 곳이 아님, doesn't render anything
+const API="/api";
+const REGISTER_VIEW="/:id/view";
 
 //Object
 
@@ -85,9 +86,9 @@ const routes={
     github_callback: GITHUB_CALLBACK,
     google: GOOGLE,
     google_callback: GOOGLE_CALLBACK,
-    instagram: INSTAGRAM,
-    instagram_callback: INSTAGRAM_CALLBACK,
-    me: ME
+    me: ME,
+    api: API,
+    registerView: REGISTER_VIEW
 };
 
 export default routes;

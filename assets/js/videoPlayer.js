@@ -8,6 +8,11 @@ const totalTime=document.getElementById("TotalTime");
 const volumeRange=document.getElementById("jsVolume");
 const playRange=document.getElementById("jsTime");
 
+const registerView=() => {
+    const videoId=window.location.href.split("/videos/")[1];
+    fetch(`/api/${videoId}/view`, {method: "POST"});
+}
+
 function handlePlayClick(){
     if(videoPlayer.paused){
         //element 에서 제공하는 함수 : play, pause, muted,,,
@@ -90,6 +95,7 @@ function setTotalTime(){
 }
 
 function handleEnded(){
+    registerView();
     videoPlayer.currentTime=0;
     playButton.innerHTML='<i class="fas fa-play"></i>'
 }

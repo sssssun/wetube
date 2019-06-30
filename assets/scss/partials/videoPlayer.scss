@@ -1,8 +1,11 @@
 .videoPlayer{
     position: relative;
+    width: 70%;
+    margin: auto;
     video{
         width: 100%;
         max-width: 100%;
+        
         
     }
     .videoPlayer__row{

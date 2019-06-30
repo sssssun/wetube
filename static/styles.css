@@ -169,7 +169,9 @@ a {
   color: white; }
 
 .videoPlayer {
-  position: relative; }
+  position: relative;
+  width: 70%;
+  margin: auto; }
   .videoPlayer video {
     width: 100%;
     max-width: 100%; }
@@ -209,6 +211,30 @@ a {
       .videoPlayer .videoPlayer__row .videoPlayer__controls i {
         font-size: 16px;
         cursor: pointer; }
+
+.videoBlock {
+  position: relative;
+  width: 70%;
+  margin: auto; }
+  .videoBlock .videoBlock__thumbnail {
+    width: 100%;
+    max-width: 100%; }
+
+.record-container {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 50px;
+  margin: auto; }
+  .record-container video {
+    width: 100%;
+    background-color: black; }
+  .record-container button {
+    width: 100%;
+    padding: 15px 15px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    background-color: #2a63bf;
+    color: white; }
 
 .video_detail__container {
   display: -webkit-box;
