@@ -2,6 +2,7 @@
 //이제 제대로 된 db model에서 비디오 목록 받아오도록 함
 import routes from "../routes";
 import Videos from "../models/Video";
+import Comments from "../models/Comment";
 
 export const home= async (req , res) => {
     try{
@@ -52,7 +53,10 @@ export const videoDetail = async(req, res) => {
 
     const id = req.params.id;
     try{
-        const video = await Videos.findById(id).populate("creator");
+        //안의 내용을 가져오고 싶으면 populate 해야됨, 아니면 id array 얻어짐
+        const video = await Videos.findById(id)
+                    .populate("creator")
+                    .populate("comments");
         res.render("videoDetail", {pageTitle : video.title, video});
     }catch(error){
         console.log(error);
@@ -129,6 +133,48 @@ export const postregisterView=async(req, res) => {
         const video=await Videos.findById(id);
         video.views+=1;
         video.save();
+        res.status(200);
+    }catch(error){
+        res.status(400);
+    }finally{
+        res.end();
+    }
+}
+
+export const postaddComment=async(req, res) => {
+    const id=req.params.id;
+    const comment=req.body.comment;
+
+    try{
+        const video=await Videos.findById(id);
+        const newComment = await Comments.create({
+            text: comment,
+            creator: req.user.id
+        })
+
+        await Comments.findById(id).populate("creator")
+        video.comments.push(newComment.id);
+        video.save();
+        
+    }catch(error){
+        res.status(400);
+    }finally{
+        res.end();
+    }
+}
+
+export const postDeleteComment = async(req,res) => {
+    const id=req.params.id;
+
+    try{
+        const comment=Comments.findById(id);
+        
+        if(comment.creator !== req.user.id){
+            throw Error();
+        }else{
+            console.log(comment.creator);
+            await Comments.findByIdAndRemove(id);
+        }
         res.status(200);
     }catch(error){
         res.status(400);

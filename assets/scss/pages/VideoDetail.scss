@@ -25,5 +25,36 @@
             margin-bottom: 15px;
         }
     }
+
+    .video__comments{
+        width: 200px;
+        margin-top: 50px;
+        text-align: center;
+        .video__comment-number{
+            font-size: 16px;
+        }
+        .add__comment{
+            input[type=text]{
+                width: 100%;
+                padding: 12px 15px;
+                margin: 8px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+        }
+        .video__comments-list{
+            margin-top: 50px;
+            padding: 0;
+            
+            li{
+                background-color: bisque;
+                margin-bottom: 20px;
+                list-style: none;
+                border-radius: 20px;
+                border-bottom-left-radius: 0px;
+            }
+        }
+    }
     
 }

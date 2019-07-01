@@ -36,6 +36,8 @@ const GOOGLE_CALLBACK="/auth/google/callback";
 //유저가 클릭해서 갈 수 있는 곳이 아님, doesn't render anything
 const API="/api";
 const REGISTER_VIEW="/:id/view";
+const ADD_COMMENT="/:id/comment";
+const DELETE_COMMENT="/:id/delete-comment"
 
 //Object
 
@@ -88,7 +90,9 @@ const routes={
     google_callback: GOOGLE_CALLBACK,
     me: ME,
     api: API,
-    registerView: REGISTER_VIEW
+    registerView: REGISTER_VIEW,
+    addComment: ADD_COMMENT,
+    deleteComment: DELETE_COMMENT
 };
 
 export default routes;

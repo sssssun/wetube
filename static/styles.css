@@ -268,6 +268,36 @@ a {
     .video_detail__container .video__info .video__description {
       display: block;
       margin-bottom: 15px; }
+  .video_detail__container .video__comments {
+    width: 200px;
+    margin-top: 50px;
+    text-align: center; }
+    .video_detail__container .video__comments .video__comment-number {
+      font-size: 16px; }
+    .video_detail__container .video__comments .add__comment input[type=text] {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 4px;
+         -moz-border-radius: 4px;
+              border-radius: 4px;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box; }
+    .video_detail__container .video__comments .video__comments-list {
+      margin-top: 50px;
+      padding: 0; }
+      .video_detail__container .video__comments .video__comments-list li {
+        background-color: bisque;
+        margin-bottom: 20px;
+        list-style: none;
+        -webkit-border-radius: 20px;
+           -moz-border-radius: 20px;
+                border-radius: 20px;
+        -webkit-border-bottom-left-radius: 0px;
+           -moz-border-radius-bottomleft: 0px;
+                border-bottom-left-radius: 0px; }
 
 body {
   background-color: #edf0f7; }
